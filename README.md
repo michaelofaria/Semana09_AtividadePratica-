@@ -8,16 +8,16 @@ Matrícula: 931634
  
 ### Catálogo renderizado
  
-![alt text](/Imagens/Meu_comercio_01.png)
+![alt text](/imagens/Meu_comercio_01.png)
 
-![alt text](/Imagens/Meu_comercio_02.png)
+![alt text](/imagens/Meu_comercio_02.png)
 
 ### Detalhes do produto
  
-![alt text](/Imagens/Meu_comercio_03.png)
+![alt text](/imagens/Meu_comercio_03.png)
 
-![alt text](/Imagens/Meu_comercio_04.png)
+![alt text](/imagens/Meu_comercio_04.png)
  
 ### Console do navegador
  
-![alt text](/Imagens/Meu_comercio_05.png)
+![alt text](/imagens/Meu_comercio_05.png)
