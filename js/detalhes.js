@@ -135,12 +135,12 @@ const price = document.createElement("p");
 const category = document.createElement("p");
     category.textContent = produto.categoria;
 
-const btnDetails = document.createElement("button");
+const btnDetails = document.createElement("a");
     btnDetails.textContent = "Ver detalhes";
+    btnDetails.href = `detalhes.html?id=${produto.id}`;
+    btnDetails.style.display = "inline-block";
+    btnDetails.style.margin = "5px";
 
-    btnDetails.addEventListener("click", () => {
-    showProductDetails(produto);
-});
 
 const btnHighlight = document.createElement("button");
     btnHighlight.textContent = "Destacar";
@@ -210,33 +210,26 @@ function showProductDetails(produto) {
 }
 
 function filterProducts() {
-    const texto = searchInput.value.toLowerCase();
-    const categoria = categorySelect.value;
+
+    const texto =
+       searchInput.value.toLowerCase();
+
+    const categoria =
+       categorySelect.value;
 
     return data.produtos.filter(produto => {
 
-const nomeValido =
-    produto.nome.toLowerCase().includes(texto);
+        const nomeValido =
+            produto.nome.toLowerCase().includes(texto);
 
-const categoriaValida =
-    categoria === "Todas" ||
-    produto.categoria === categoria;
+        const categoriaValida =
+            categoria === "Todas" ||
+            produto.categoria === categoria;
 
-    return nomeValido && categoriaValida;
-});
+        return nomeValido && categoriaValida;
+    });
 }
-
-    searchInput.addEventListener("input", () => {
-    renderProducts(filterProducts());
-});
-
-    categorySelect.addEventListener("change", () => {
-    renderProducts(filterProducts());
-});
-
-    btnRender.addEventListener("click", () => {
-    renderProducts(filterProducts());
-});
 
 renderCategories();
 renderProducts(data.produtos);
+}
