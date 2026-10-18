@@ -44,3 +44,20 @@ padding: 15px;
 background: white;
 border-radius: 8px;
 }
+
+.detail-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+}
+
+#product-details {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
