@@ -5,6 +5,11 @@ produtos: [
     nome: "iPhone 17",
     preco: 18900,
     categoria: "Celulares",
+    fabricante: "Apple",
+    garantia: "12 meses",
+    avaliacao: 4.9,
+    armazenamento: "1 TB",
+    cor: "Roxo",
     imagem: "./imagens/iPhone-17.jpg",
     descricao: "Apple iPhone Air 1TB Roxo 5G Tela 6,5 Câmera Traseira 48MP Frontal 18MP",
     emEstoque: true
@@ -15,6 +20,11 @@ produtos: [
     nome: "Samsung Galaxy S26",
     preco: 7020,
     categoria: "Celulares",
+    fabricante: "Samsung",
+    garantia: "12 meses",
+    avaliacao: 4.8,
+    armazenamento: "256 GB",
+    cor: "Titânio Azul",
     imagem: "./imagens/Samsung.jpg",
     descricao: "Celular Galaxy S25 Ultra 5G 256GB Galaxy AI Titânio Azul 6,9 12GB RAM Câm. Quádrupla 200+50+10+50MP Bateria 5000mAh Dual Chip",
     emEstoque: true
@@ -25,6 +35,12 @@ produtos: [
     nome: "Notebook Dell",
     preco: 6198,
     categoria: "Notebooks",
+    fabricante: "Dell",
+    garantia: "12 meses",
+    avaliacao: 4.7,
+    processador: "Intel Core i5 13ª Geração",
+    memoria: "16GB",
+    armazenamento: "512GB SSD",
     imagem: "./imagens/Dell.png",
     descricao: "Notebook Dell 15 Dc15-i51334u-u70 15.6 Full Hd 13ª Gen Intel Core i5 16gb 512gb SSD Linux Preto Carbono",
     emEstoque: true
@@ -35,6 +51,11 @@ produtos: [
     nome: "Notebook Lenovo",
     preco: 5499,
     categoria: "Notebooks",
+    fabricante: "Lenovo",
+    garantia: "12 meses",
+    avaliacao: 4.6,
+    processador: "Intel Core i5",
+    memoria: "8GB",
     imagem: "./imagens/Lenovo.jpg",
     descricao: "Notebook Lenovo Ideapad Slim 3i Core i5-13420H 8GB RAM",
     emEstoque: false
@@ -45,6 +66,10 @@ produtos: [
     nome: "Mouse Gamer",
     preco: 119,
     categoria: "Acessórios",
+    fabricante: "Redragon",
+    garantia: "6 meses",
+    avaliacao: 4.8,
+    dpi: "12400",
     imagem: "./imagens/Mouse.png",
     descricao: "Mouse Gamer Redragon Cobra, Chroma RGB, 12400 DPI, 8 Botões, Preto - M711",
     emEstoque: true
@@ -55,6 +80,11 @@ produtos: [
     nome: "Teclado Gamer",
     preco: 281,
     categoria: "Acessórios",
+    fabricante: "Rise Mode",
+    garantia: "12 meses",
+    avaliacao: 4.7,
+    tipo: "Mecânico",
+    switch: "Outemu Brown",
     imagem: "./imagens/Teclado.png",
     descricao: "Teclado Mecânico Gamer Rise Mode GM1 White, RGB, Switch Outemu Brown - RM-TCM-GM1-WBRO.",
     emEstoque: true
@@ -65,6 +95,11 @@ produtos: [
     nome: "PlayStation 5",
     preco: 4549,
     categoria: "Games",
+    fabricante: "Sony",
+    garantia: "12 meses",
+    avaliacao: 4.9,
+    armazenamento: "1TB",
+    tipoMidia: "Física",
     imagem: "./imagens/play5.png",
     descricao: "Console Playstation 5 Slim Sony 1TB Mídia Física Cfi-2114a",
     emEstoque: true
@@ -75,6 +110,10 @@ produtos: [
     nome: "Xbox Series X - Branco",
     preco: 4300,
     categoria: "Games",
+    fabricante: "Microsoft",
+    garantia: "12 meses",
+    avaliacao: 4.8,
+    armazenamento: "1TB",
     imagem: "./imagens/Xbox.png",
     descricao: "Console Xbox Series X, Microsoft, 1Tb, Controle Sem Fio - Branco",
     emEstoque: false
@@ -85,6 +124,10 @@ produtos: [
     nome: "Kit Gamer",
     preco: 145,
     categoria: "Combo",
+    fabricante: "OEX",
+    garantia: "6 meses",
+    avaliacao: 4.5,
+    componentes: "Teclado, Mouse, Headset e Mouse Pad",
     imagem: "./imagens/Kit gamer.png",
     descricao: "Kit Gamer Teclado Mouse Headset Mouse Pad - OEX Game Combo Argos",
     emEstoque: false
@@ -95,6 +138,10 @@ produtos: [
     nome: "TV 32 Polegadas",
     preco: 1999,
     categoria: "Games",
+    garantia: "12 meses",
+    avaliacao: 4.6,
+    tamanho: "32 Polegadas",
+    resolucao: "HD",
     imagem: "./imagens/Tv.png",
     descricao: "Smart TV 32 Polegadas Philco LED HD, Processador Quad Core",
     emEstoque: false
@@ -110,7 +157,10 @@ const categorySelect = document.querySelector("#category");
 const btnRender = document.querySelector("#btnRender");
 
 function formatPrice(preco) {
-    return `R$ ${preco.toFixed(2)}`;
+    return preco.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
 }
 
 function createProductCard(produto) {
@@ -138,9 +188,7 @@ const category = document.createElement("p");
 const btnDetails = document.createElement("a");
     btnDetails.textContent = "Ver detalhes";
     btnDetails.href = `detalhes.html?id=${produto.id}`;
-    btnDetails.style.display = "inline-block";
-    btnDetails.style.margin = "5px";
-
+    btnDetails.classList.add("btn-details");
 
 const btnHighlight = document.createElement("button");
     btnHighlight.textContent = "Destacar";
@@ -149,12 +197,17 @@ const btnHighlight = document.createElement("button");
     card.classList.toggle("highlight");
 });
 
+const actions = document.createElement("div");
+actions.classList.add("card-buttons");
+
+actions.appendChild(btnDetails);
+actions.appendChild(btnHighlight);
+
 card.appendChild(img);
 card.appendChild(title);
 card.appendChild(price);
 card.appendChild(category);
-card.appendChild(btnDetails);
-card.appendChild(btnHighlight);
+card.appendChild(actions);
 
 return card;
 }
@@ -164,14 +217,15 @@ function renderProducts(produtos) {
 
     produtos.forEach(produto => {
 
-const card = createProductCard(produto);
-    productList.appendChild(card);
-});
+        const card = createProductCard(produto);
+        productList.appendChild(card);
+    });
 
-const cards = document.querySelectorAll(".card");
+    const cards = document.querySelectorAll(".card");
+    
     cards.forEach(card => {
-    console.log("Card ID:", card.dataset.id);
-});
+        console.log("Card ID:", card.dataset.id);
+    });
 }
 
 function renderCategories() {
@@ -228,7 +282,21 @@ function filterProducts() {
 
         return nomeValido && categoriaValida;
     });
+
+
 }
+
+searchInput.addEventListener("input", () => {
+    renderProducts(filterProducts());
+});
+
+categorySelect.addEventListener("change", () => {
+    renderProducts(filterProducts());
+});
+
+btnRender.addEventListener("click", () => {
+    renderProducts(filterProducts());
+});
 
 renderCategories();
 renderProducts(data.produtos);
